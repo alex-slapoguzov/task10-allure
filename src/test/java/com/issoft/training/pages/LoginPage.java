@@ -1,13 +1,9 @@
 package com.issoft.training.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-
-    private WebDriver driver;
+public class LoginPage extends Page {
 
     @FindBy(id = "Username")
     private WebElement loginField;
@@ -18,9 +14,8 @@ public class LoginPage {
     @FindBy(css = ".button.loginButton.gradientforbutton")
     private WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public LoginPage() {
+        super();
     }
 
     public MailPage login(String login, String password) {
@@ -29,6 +24,7 @@ public class LoginPage {
         passwordField.clear();
         passwordField.sendKeys(password);
         loginButton.click();
-        return new MailPage(driver);
+
+        return new MailPage();
     }
 }
